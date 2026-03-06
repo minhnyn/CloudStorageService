@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Dashboard</title>
+    <link th:href="@{/css/dashboardLayoutstyle.css}" rel="stylesheet" />
+  </head>
+  <body>
+    <nav>
+      <header class="header">
+        <h1 class="main-title">Cloudpage</h1>
+      </header>
+    </nav>
+    <aside>
+      <input type="file" id="fileInput" style="display: none" />
+      <ul>
+        <li><button id="uploadButton">Datei Hochladen</button></li>
+        <li><a href="/dashboard/logout">Abmelden</a></li>
+      </ul>
+    </aside>
+    <main>
+      <h3>Meine Ablage</h3>
+      <table class="filetable">
+        <colgroup>
+          <col style="width: 300px" />
+          <col style="width: 50px" />
+          <col style="width: 50px" />
+          <col style="width: 50px" />
+          <col style="width: 50px" />
+        </colgroup>
+
+        <tr class="tablehead">
+          <th>Datei</th>
+          <th>Hochgeladen am</th>
+          <th>Dateigröße</th>
+          <th>Typ</th>
+          <th></th>
+        </tr>
+
+        <tr th:each="file : ${files}" th:data-id="${file.fileid}">
+          <td>
+            <a
+              th:href="@{/dashboard/download/{id}(id=${file.fileid})}"
+              th:text="${file.originalFileName}"
+            >
+            </a>
+          </td>
+          <td th:text="${file.uploadTime}"></td>
+          <td th:text="${file.sizeForVisuell}"></td>
+          <td th:text="${file.contentType}"></td>
+          <td>
+            <div class="file-row">
+              <button
+                class="menu-button"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                ⋮
+              </button>
+
+              <ul class="dropdown" role="menu">
+                <li role="menuitem">
+                  <button id="loeschenItem">Löschen</button>
+                </li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </main>
+    <footer>Footer</footer>
+    <script th:src="@{/dashboardscript.js}"></script>
+  </body>
+</html>

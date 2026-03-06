@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cloudservice loginscreen</title>
+    <link rel="stylesheet" th:href="@{/css/loginscreenstyle.css}" />
+  </head>
+  <body>
+    <section>
+      <img th:src="@{/images/Background.jpg}" class="bg" />
+      <div class="authenticationbox">
+        <h2 class="login">Login</h2>
+
+        <form
+          method="POST"
+          action="http://localhost:8080/auth/login"
+          class="inputfields"
+        >
+          <div class="inputbox">
+            <input type="text" name="email" placeholder="e-mail" />
+          </div>
+          <div class="inputbox">
+            <input type="text" name="password" placeholder="Password" />
+          </div>
+
+          <div class="inputbox">
+            <button class="authenticationbutton" type="submit">Login</button>
+          </div>
+        </form>
+
+        <div class="group">
+          Kein Account? Hier Anmelden <a href="/auth/register">Sign up</a>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

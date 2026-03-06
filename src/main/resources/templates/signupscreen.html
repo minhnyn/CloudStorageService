@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cloudservice loginscreen</title>
+    <link rel="stylesheet" th:href="@{/css/loginscreenstyle.css}" />
+  </head>
+  <body>
+    <h1 class="main-title">Cloudpage</h1>
+    <h2>Sign in</h2>
+    <form method="POST" action="/auth/register">
+      Email:
+      <input type="text" name="email" placeholder="e-mail" />
+      Password:
+      <input type="password" name="password" placeholder="Password" />
+      Anmeldekey:
+      <input type="text" name="key" placeholder="Key" />
+      <button type="submit" class="authenticationbutton">Registrieren</button>
+    </form>
+    Bereits ein Account? Hier Anmelden<a th:href="@{/auth/login}">Login</a>
+  </body>
+</html>
