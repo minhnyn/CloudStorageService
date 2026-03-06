@@ -6,17 +6,37 @@
     <link rel="stylesheet" th:href="@{/css/loginscreenstyle.css}" />
   </head>
   <body>
-    <h1 class="main-title">Cloudpage</h1>
-    <h2>Sign in</h2>
-    <form method="POST" action="/auth/register">
-      Email:
-      <input type="text" name="email" placeholder="e-mail" />
-      Password:
-      <input type="password" name="password" placeholder="Password" />
-      Anmeldekey:
-      <input type="text" name="key" placeholder="Key" />
-      <button type="submit" class="authenticationbutton">Registrieren</button>
-    </form>
-    Bereits ein Account? Hier Anmelden<a th:href="@{/auth/login}">Login</a>
+    <section>
+      <img th:src="@{/images/Background.jpg}" class="bg" />
+      <div class="authenticationbox">
+        <h2 class="login">Registrieren</h2>
+
+        <form
+          method="POST"
+          action="http://localhost:8080/auth/login"
+          class="inputfields"
+        >
+          <div class="inputbox">
+            <input type="text" name="email" placeholder="E-mail" />
+          </div>
+          <div class="inputbox">
+            <input type="password" name="password" placeholder="Password" />
+          </div>
+          <div class="inputbox">
+            <input type="text" name="key" placeholder="Key" />
+          </div>
+
+          <div class="inputbox">
+            <button class="authenticationbutton" type="submit">
+              registrieren
+            </button>
+          </div>
+        </form>
+
+        <div class="group">
+          Bereits einen Account? Hier Anmelden <a href="/auth/login">Sign in</a>
+        </div>
+      </div>
+    </section>
   </body>
 </html>

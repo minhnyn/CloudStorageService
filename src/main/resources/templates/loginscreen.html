@@ -9,7 +9,7 @@
     <section>
       <img th:src="@{/images/Background.jpg}" class="bg" />
       <div class="authenticationbox">
-        <h2 class="login">Login</h2>
+        <h2 class="login">login</h2>
 
         <form
           method="POST"
@@ -20,16 +20,16 @@
             <input type="text" name="email" placeholder="e-mail" />
           </div>
           <div class="inputbox">
-            <input type="text" name="password" placeholder="Password" />
+            <input type="password" name="password" placeholder="Password" />
           </div>
 
           <div class="inputbox">
-            <button class="authenticationbutton" type="submit">Login</button>
+            <button class="authenticationbutton" type="submit">login</button>
           </div>
         </form>
 
         <div class="group">
-          Kein Account? Hier Anmelden <a href="/auth/register">Sign up</a>
+          Kein Account? Hier Registrieren <a href="/auth/register">Sign up</a>
         </div>
       </div>
     </section>
