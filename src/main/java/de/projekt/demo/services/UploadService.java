@@ -19,8 +19,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -54,7 +52,7 @@ public class UploadService {
         fileEntity.setContentType(file.getContentType());
         fileEntity.setStoredFileName(uniqueFileName);
         fileEntity.setBenutzer(benutzer);
-        fileEntity.setUploadTime(LocalDate.now());
+        fileEntity.setUploadDate(LocalDate.now());
         fileEntity.setSize(file.getSize());
         fileEntity.setSizeForVisuell(readableSize(file.getSize()));
 
@@ -72,9 +70,7 @@ public class UploadService {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
 
-        Path path = Paths.get(uploadDir, dataFile.getStoredFileName());
-
-        Resource resource = new UrlResource(path.toUri());
+        Resource resource = getResource(dataFile);
 
         // 5️⃣ Datei zurückgeben
         return ResponseEntity.ok()
@@ -117,6 +113,43 @@ public class UploadService {
         String units = "KMGTPE";
         return String.format("%.1f %sB", bytes / Math.pow(1024, exp), units.charAt(exp-1));
     }
+
+    public DataFile changeFileName(Benutzer benutzer, int dataFileId, String newName) throws IOException {
+
+        if (newName.contains(".") || newName.contains("/") || newName.contains("\\")) {
+            throw new IllegalArgumentException("Ungültiger Dateiname");
+        }
+
+        DataFile dataFile = dataFileService.getDataFileById(dataFileId);
+
+        //Sicherheitscheck
+        if (!dataFile.getBenutzer().getEmail().equals(benutzer.getEmail())) throw new IllegalArgumentException("Unerlaubter Zugriff");
+
+        Path oldFilePath = Paths.get(uploadDir, dataFile.getStoredFileName());
+
+        int suffixPos = dataFile.getOriginalFileName().lastIndexOf(".");
+        String suffix = suffixPos >= 0 ? dataFile.getOriginalFileName().substring(suffixPos) : "";
+        String newOriginalName = newName+suffix;
+
+        String newUniqueFileName = UUID.randomUUID() + "_" + newOriginalName;
+        Path newFilePath = Paths.get(uploadDir, newUniqueFileName);
+
+        Files.move(oldFilePath,newFilePath);
+
+        dataFile.setStoredFileName(newUniqueFileName);
+        dataFile.setOriginalFileName(newOriginalName);
+
+        return dataFile;
+    }
+
+    private Resource getResource(DataFile dataFile) throws MalformedURLException {
+
+        Path path = Paths.get(uploadDir, dataFile.getStoredFileName());
+
+        return new UrlResource(path.toUri());
+    }
+
+
 
 
 }

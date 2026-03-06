@@ -30,7 +30,7 @@ public class DataFile {
     //Dargestellte Größe
     private String sizeForVisuell;
 
-    private LocalDate uploadTime;
+    private LocalDate uploadDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "benutzer_email", nullable = false)
@@ -46,7 +46,7 @@ public class DataFile {
         this.storedFileName = storedFileName;
         this.contentType = contentType;
         this.size = size;
-        this.uploadTime = LocalDate.now();
+        this.uploadDate = LocalDate.now();
         this.benutzer = benutzer;
         this.sizeForVisuell = sizeForVisuell;
     }

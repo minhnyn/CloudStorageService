@@ -36,6 +36,12 @@ public class DashbordController {
         return uploadService.uploadData(benutzer.getEmail(),file);
     }
 
+    @PostMapping("/rename/{fileId}")
+    public DataFile renameFile(@PathVariable int fileId, @RequestParam String newName, HttpSession session) throws IOException {
+        Benutzer benutzer = (Benutzer) session.getAttribute("user");
+        return uploadService.changeFileName(benutzer,fileId,newName);
+    }
+
     @GetMapping("/download/{fileId}")
     public ResponseEntity<Resource> download(@PathVariable int fileId, HttpSession session) throws IOException {
 

@@ -117,6 +117,9 @@ function addRow(file) {
                 <li role="menuitem">
                   <button id="loeschenItem">Löschen</button>
                 </li>
+                 <li role="menuitem">
+                  <button id="umbenennenItem">Umbenennen</button>
+                </li>
               </ul>
             </div>
   `;

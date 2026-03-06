@@ -44,7 +44,7 @@
             >
             </a>
           </td>
-          <td th:text="${file.uploadTime}"></td>
+          <td th:text="${file.uploadDate}"></td>
           <td th:text="${file.sizeForVisuell}"></td>
           <td th:text="${file.contentType}"></td>
           <td>
@@ -60,6 +60,9 @@
               <ul class="dropdown" role="menu">
                 <li role="menuitem">
                   <button id="loeschenItem">Löschen</button>
+                </li>
+                <li role="menuitem">
+                  <button id="umbenennenItem">Umbenennen</button>
                 </li>
               </ul>
             </div>
