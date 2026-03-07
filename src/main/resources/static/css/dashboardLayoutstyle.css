@@ -127,7 +127,7 @@ input {
   width: 40%;
 }
 
-h3 {
+.titelInMain {
   font-size: 36px;
   padding-left: 10rem;
   padding-top: 2rem;
@@ -265,22 +265,72 @@ input[type="file"] {
 
 /* Umbenennen Box */
 .renameBox {
-  display: none;
+  display: none; /* bleibt unsichtbar bis geöffnet */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.4);
+
+  align-items: center; /* vertikal zentrieren */
+  justify-content: center; /* horizontal zentrieren */
 }
 
 .renameContent {
   background: white;
-  padding: 20px;
-  width: 300px;
-  margin: 15% auto;
+  padding: 25px;
+  width: 320px;
   border-radius: 8px;
+  box-sizing: border-box;
   text-align: center;
+}
+
+.renameContent h3 {
+  display: block;
+  width: 100%;
+  margin: 0 0 15px 0;
+  font-size: 20px;
+  text-align: center;
+}
+
+.renameContent input {
+  width: 100%;
+  font-size: 18px;
+  padding: 8px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+}
+
+.renameContent button {
+  font-size: 16px;
+  padding: 8px 14px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.saveBtn {
+  background-color: #1a73e8;
+  color: white;
+  border: 1px solid #1a73e8;
+  border-radius: 6px;
+  padding: 8px 16px;
+}
+
+.saveBtn:hover {
+  background-color: #1666c1;
+}
+
+.cancelBtn {
+  background-color: white;
+  color: #3c4043;
+  border: 1px solid #dadce0;
+  border-radius: 6px;
+  padding: 8px 16px;
+}
+
+.cancelBtn:hover {
+  background-color: #f1f3f4;
 }
 
 /* Footer */

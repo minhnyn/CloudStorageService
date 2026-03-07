@@ -11,11 +11,7 @@
       <div class="authenticationbox">
         <h2 class="login">Registrieren</h2>
 
-        <form
-          method="POST"
-          action="http://localhost:8080/auth/register"
-          class="inputfields"
-        >
+        <form method="POST" th:action="@{/auth/register}" class="inputfields">
           <div class="inputbox">
             <input type="text" name="email" placeholder="E-mail" />
           </div>
@@ -35,7 +31,7 @@
 
         <div class="group">
           Bereits einen Account? Hier Anmelden
-          <a href="/auth/login">Sign in</a>
+          <a th:href="@{/auth/login}">Sign in</a>
         </div>
       </div>
     </section>

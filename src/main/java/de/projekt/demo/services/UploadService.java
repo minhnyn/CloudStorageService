@@ -38,6 +38,9 @@ public class UploadService {
     }
 
     public DataFile uploadData(String email, MultipartFile file) throws IOException {
+        if(file.getSize() > 100000000){
+            throw new IllegalArgumentException();
+        }
         Benutzer benutzer = benutzerService.getBenutzerByEmail(email);
 
         Files.createDirectories(Paths.get(uploadDir));
@@ -116,7 +119,7 @@ public class UploadService {
 
     public DataFile changeFileName(Benutzer benutzer, int dataFileId, String newName) throws IOException {
 
-        if (newName.contains(".") || newName.contains("/") || newName.contains("\\")) {
+        if (newName.contains(".") || newName.contains("/") || newName.contains("\\") || newName.isBlank()) {
             throw new IllegalArgumentException("Ungültiger Dateiname");
         }
 

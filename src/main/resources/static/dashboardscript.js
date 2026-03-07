@@ -64,7 +64,7 @@ document
       lastChosenRow = event.target.closest("tr");
       lastChosenDataFileId = lastChosenRow.dataset.id;
 
-      document.getElementById("rename").style.display = "block";
+      document.getElementById("rename").style.display = "flex";
     }
   });
 
@@ -148,7 +148,6 @@ function closeRename() {
 
 async function saveName() {
   const name = document.getElementById("filename").value;
-  console.log("Neuer Dateiname:", name);
   try {
     const response = await fetch(
       "/dashboard/rename/" + lastChosenDataFileId + "?newName=" + name,
@@ -163,8 +162,10 @@ async function saveName() {
       link.href = `/dashboard/download/${lastChosenDataFileId}`;
       link.textContent = json.originalFileName;
 
+      document.getElementById("filename").value = ""; //Textfeld leeren
       lastChosenRow.cells[0].innerHTML = "";
       lastChosenRow.cells[0].appendChild(link); //Link aktualisieren
+
       closeRename();
     } else {
       alert("Umbenennung fehlgeschlagen");

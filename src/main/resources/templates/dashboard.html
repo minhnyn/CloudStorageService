@@ -14,11 +14,11 @@
       <input type="file" id="fileInput" style="display: none" />
       <ul>
         <li><button id="uploadButton">Datei Hochladen</button></li>
-        <li><a href="/dashboard/logout">Abmelden</a></li>
+        <li><a th:href="@{/dashboard/logout}">Abmelden</a></li>
       </ul>
     </aside>
     <main>
-      <h3>Meine Ablage</h3>
+      <h3 class="titelInMain">Meine Ablage</h3>
       <table class="filetable">
         <colgroup>
           <col style="width: 300px" />
@@ -74,8 +74,8 @@
           <h3>Umbenennen</h3>
           <input type="text" id="filename" placeholder="Name" />
           <br /><br />
-          <button onclick="saveName()">Speichern</button>
-          <button onclick="closeRename()">Abbrechen</button>
+          <button onclick="saveName()" class="saveBtn">Speichern</button>
+          <button onclick="closeRename()" class="cancelBtn">Abbrechen</button>
         </div>
       </div>
     </main>
