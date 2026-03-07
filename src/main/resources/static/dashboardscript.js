@@ -3,6 +3,10 @@ const button = document.getElementById("uploadButton");
 const input = document.getElementById("fileInput");
 const table = document.querySelector(".filetable tbody");
 
+//Variablen
+let lastChosenDataFileId = null;
+let lastChosenRow = null;
+
 //Eventlistener hinzufügen
 button.addEventListener("click", () => {
   input.click();
@@ -28,6 +32,11 @@ document.addEventListener("click", () => {
   });
 });
 
+//Event wird beim Clicken des Textfeldes in rename nicht weitergeleitet
+document.getElementById("rename").addEventListener("click", (event) => {
+  event.stopPropagation();
+});
+
 document
   .querySelector(".filetable")
   .addEventListener("click", async (event) => {
@@ -48,6 +57,14 @@ document
       } catch (error) {
         alert("Serverfehler");
       }
+    }
+
+    if (event.target.id === "openRename") {
+      console.log("Umbenennen ausgewählt");
+      lastChosenRow = event.target.closest("tr");
+      lastChosenDataFileId = lastChosenRow.dataset.id;
+
+      document.getElementById("rename").style.display = "block";
     }
   });
 
@@ -99,12 +116,12 @@ function addRow(file) {
 
   cell1.appendChild(link);
 
-  cell2.textContent = file.uploadTime;
+  cell2.textContent = file.uploadDate;
   cell3.textContent = file.sizeForVisuell;
   cell4.textContent = file.contentType;
 
   cell5.innerHTML = `
-   <div class="file-row">
+ <div class="file-row">
               <button
                 class="menu-button"
                 aria-haspopup="true"
@@ -117,10 +134,42 @@ function addRow(file) {
                 <li role="menuitem">
                   <button id="loeschenItem">Löschen</button>
                 </li>
-                 <li role="menuitem">
-                  <button id="umbenennenItem">Umbenennen</button>
+                <li role="menuitem">
+                  <button id="openRename">Umbenennen</button>
                 </li>
               </ul>
             </div>
   `;
+}
+
+function closeRename() {
+  document.getElementById("rename").style.display = "none";
+}
+
+async function saveName() {
+  const name = document.getElementById("filename").value;
+  console.log("Neuer Dateiname:", name);
+  try {
+    const response = await fetch(
+      "/dashboard/rename/" + lastChosenDataFileId + "?newName=" + name,
+      {
+        method: "POST",
+      },
+    );
+
+    if (response.ok) {
+      const json = await response.json();
+      const link = document.createElement("a");
+      link.href = `/dashboard/download/${lastChosenDataFileId}`;
+      link.textContent = json.originalFileName;
+
+      lastChosenRow.cells[0].innerHTML = "";
+      lastChosenRow.cells[0].appendChild(link); //Link aktualisieren
+      closeRename();
+    } else {
+      alert("Umbenennung fehlgeschlagen");
+    }
+  } catch (error) {
+    alert("Serverfehler");
+  }
 }

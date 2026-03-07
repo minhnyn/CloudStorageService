@@ -1,5 +1,6 @@
 package de.projekt.demo.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -34,6 +35,7 @@ public class DataFile {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "benutzer_email", nullable = false)
+    @JsonIgnore
     private Benutzer benutzer;
 
 

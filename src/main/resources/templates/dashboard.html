@@ -62,15 +62,24 @@
                   <button id="loeschenItem">Löschen</button>
                 </li>
                 <li role="menuitem">
-                  <button id="umbenennenItem">Umbenennen</button>
+                  <button id="openRename">Umbenennen</button>
                 </li>
               </ul>
             </div>
           </td>
         </tr>
       </table>
+      <div id="rename" class="renameBox">
+        <div class="renameContent">
+          <h3>Umbenennen</h3>
+          <input type="text" id="filename" placeholder="Name" />
+          <br /><br />
+          <button onclick="saveName()">Speichern</button>
+          <button onclick="closeRename()">Abbrechen</button>
+        </div>
+      </div>
     </main>
-    <footer>Footer</footer>
+    <footer>Footer argh</footer>
     <script th:src="@{/dashboardscript.js}"></script>
   </body>
 </html>
