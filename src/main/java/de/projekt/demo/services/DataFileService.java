@@ -14,7 +14,7 @@ import java.util.List;
 @Transactional
 public class DataFileService {
 
-    private DataFileRepository dataFileRepository;
+    private final DataFileRepository dataFileRepository;
 
     @Autowired
     public DataFileService(DataFileRepository dataFileRepository){

@@ -21,7 +21,7 @@ import java.io.IOException;
 @RequestMapping("/dashboard")
 public class DashbordController {
 
-    private UploadService uploadService;
+    private final UploadService uploadService;
 
     @Autowired
     public DashbordController(UploadService uploadService){
@@ -38,7 +38,9 @@ public class DashbordController {
 
     @PostMapping("/rename/{fileId}")
     public DataFile renameFile(@PathVariable int fileId, @RequestParam String newName, HttpSession session) throws IOException {
+
         Benutzer benutzer = (Benutzer) session.getAttribute("user");
+
         return uploadService.changeFileName(benutzer,fileId,newName);
     }
 

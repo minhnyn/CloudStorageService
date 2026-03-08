@@ -292,6 +292,7 @@ input[type="file"] {
   margin: 0 0 15px 0;
   font-size: 20px;
   text-align: center;
+  color: blue;
 }
 
 .renameContent input {
@@ -331,6 +332,11 @@ input[type="file"] {
 
 .cancelBtn:hover {
   background-color: #f1f3f4;
+}
+
+.errorMessage {
+  text-align: center;
+  color: red;
 }
 
 /* Footer */

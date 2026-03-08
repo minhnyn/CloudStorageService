@@ -14,12 +14,15 @@
         <form method="POST" th:action="@{/auth/register}" class="inputfields">
           <div class="inputbox">
             <input type="text" name="email" placeholder="E-mail" />
+            <span th:text="${emailError}" class="errorMessage"></span>
           </div>
           <div class="inputbox">
             <input type="password" name="password" placeholder="Password" />
+            <span th:text="${passwordError}" class="errorMessage"></span>
           </div>
           <div class="inputbox">
             <input type="text" name="key" placeholder="Key" />
+            <span th:text="${keyError}" class="errorMessage"></span>
           </div>
 
           <div class="inputbox">

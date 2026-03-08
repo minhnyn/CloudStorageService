@@ -92,3 +92,9 @@ section .bg {
   border: none;
   margin-bottom: 0;
 }
+
+.errorMessage {
+  text-align: center;
+  color: red;
+  padding: 5px;
+}

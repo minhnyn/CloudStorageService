@@ -75,7 +75,7 @@ public class UploadService {
 
         Resource resource = getResource(dataFile);
 
-        // 5️⃣ Datei zurückgeben
+        //Datei zurückgeben
         return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(dataFile.getContentType()))
                 .header(HttpHeaders.CONTENT_DISPOSITION,
@@ -117,7 +117,7 @@ public class UploadService {
         return String.format("%.1f %sB", bytes / Math.pow(1024, exp), units.charAt(exp-1));
     }
 
-    public DataFile changeFileName(Benutzer benutzer, int dataFileId, String newName) throws IOException {
+    public DataFile changeFileName(Benutzer benutzer, int dataFileId, String newName) throws IOException, IllegalArgumentException {
 
         if (newName.contains(".") || newName.contains("/") || newName.contains("\\") || newName.isBlank()) {
             throw new IllegalArgumentException("Ungültiger Dateiname");
@@ -126,7 +126,7 @@ public class UploadService {
         DataFile dataFile = dataFileService.getDataFileById(dataFileId);
 
         //Sicherheitscheck
-        if (!dataFile.getBenutzer().getEmail().equals(benutzer.getEmail())) throw new IllegalArgumentException("Unerlaubter Zugriff");
+        if (!dataFile.getBenutzer().getEmail().equals(benutzer.getEmail())) throw new IllegalAccessError("Unerlaubter Zugriff");
 
         Path oldFilePath = Paths.get(uploadDir, dataFile.getStoredFileName());
 

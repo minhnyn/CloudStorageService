@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping
 public class PageController {
 
-    DataFileService dataFileService;
+    private final DataFileService dataFileService;
 
     @Autowired
     public PageController(DataFileService dataFileService){

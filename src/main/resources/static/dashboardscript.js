@@ -168,7 +168,8 @@ async function saveName() {
 
       closeRename();
     } else {
-      alert("Umbenennung fehlgeschlagen");
+      document.getElementById("errorMessageText").textContent =
+        "Umbennenung nicht erlaubt";
     }
   } catch (error) {
     alert("Serverfehler");
