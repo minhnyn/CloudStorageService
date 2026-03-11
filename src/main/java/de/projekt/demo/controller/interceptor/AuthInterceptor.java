@@ -6,6 +6,9 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+/**
+ * Komponente, die den Zugriff auf nicht zugängliche URLs eines Nutzers schützt
+ */
 @Component
 public class AuthInterceptor implements HandlerInterceptor {
 

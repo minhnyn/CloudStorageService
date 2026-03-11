@@ -4,6 +4,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * Exceotionhandler der verschiedene Exceptions HTTP Statuscode behandelt
+ */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 

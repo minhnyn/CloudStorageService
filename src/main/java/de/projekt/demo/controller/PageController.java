@@ -1,6 +1,5 @@
 package de.projekt.demo.controller;
 
-import de.projekt.demo.DataFileStorageProperties;
 import de.projekt.demo.entities.Benutzer;
 import de.projekt.demo.entities.DataFile;
 import de.projekt.demo.services.DataFileService;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;

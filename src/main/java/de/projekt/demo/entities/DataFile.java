@@ -8,6 +8,10 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+/**
+ * Entität die Metadaten über die gespeicherte Dateien enthält. Damit kann man im Dateisystem nach
+ * der entsprechenden Datei suchen
+ */
 @Data
 @Entity
 @Getter
@@ -40,10 +44,10 @@ public class DataFile {
 
 
     public DataFile(String originalFileName,
-                      String storedFileName,
-                      String contentType,
-                      Long size,
-                      Benutzer benutzer, String sizeForVisuell) {
+                    String storedFileName,
+                    String contentType,
+                    Long size,
+                    Benutzer benutzer, String sizeForVisuell) {
         this.originalFileName = originalFileName;
         this.storedFileName = storedFileName;
         this.contentType = contentType;
@@ -52,7 +56,6 @@ public class DataFile {
         this.benutzer = benutzer;
         this.sizeForVisuell = sizeForVisuell;
     }
-
 
 
     public DataFile() {

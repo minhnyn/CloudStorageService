@@ -6,21 +6,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-    @Entity
-    @Getter
-    @Setter
-    @NoArgsConstructor
-    public class Benutzer {
+/**
+ * Die Benutzer Entität
+ */
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+public class Benutzer {
 
-        @Id
-        private String email;
+    @Id
+    private String email;
 
-        private String password;
+    private String password;
 
-        public Benutzer(String email, String password) {
-            this.email = email;
-            this.password = password;
-        }
-
+    public Benutzer(String email, String password) {
+        this.email = email;
+        this.password = password;
     }
+
+}
 
